@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Websocket App</title>
+</head>
+<body>
+
+	<h1>WebSocket App</h1>
+
+	<input id="inputElement">
+
+<script type="text/javascript">
+	
+	const socket = new WebSocket("ws://localhost:8080/echo")
+
+	inputElement.onkeyup = (e) => {
+		if (e.keyCode === 13) {
+
+			socket.send(JSON.stringify({
+				data: e.target.value,
+			}))
+		}
+	}
+
+	socket.onmessage = e => {
+		console.log(e.data)
+	}
+	
+</script>
+</body>
+</html>
